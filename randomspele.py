@@ -55,6 +55,17 @@ def random_text_generator(word_count=1, use_real_words=True):
             generated_words.append(word)
     return generated_words
 
+def generate_random_number(min_value, max_value):
+    """
+    Function to generate a random number within a given range.
+    Args:
+        min_value (int): The minimum value of the range.
+        max_value (int): The maximum value of the range.
+    Returns:
+        int: A randomly generated number within the range.
+    """
+    return random.randint(min_value, max_value)
+
 def display_menu():
     """
     Display a menu for the user to choose actions.
@@ -63,22 +74,23 @@ def display_menu():
     print("1. Vienas monētas mešana")
     print("2. Vairāku monētu mešana")
     print("3. Random vārdu ģenerēšana")
-    print("4. Parādīt pēdējos rezultātus")
-    print("5. Iziet no programmas")
+    print("4. Ģenerēt random skaitli noteiktā vērtībā")
+    print("5. Parādīt pēdējos rezultātus")
+    print("6. Iziet no programmas")
 
 def main():
     """
     Main function to run the program.
     """
     print("Laipni lūgti programmā!")
-    print("Šeit jūs varat izmēģināt monētas mešanu vai ģenerēt random vārdus.")
+    print("Šeit jūs varat mest monētas, ģenerēt random vārdus vai skaitļus.")
     
     last_results = None  # To store the last results of any operation
 
     while True:
         display_menu()
         try:
-            choice = int(input("\nIevadiet izvēles numuru (1, 2, 3, 4 vai 5): "))
+            choice = int(input("\nIevadiet izvēles numuru (1, 2, 3, 4, 5 vai 6): "))
         except ValueError:
             print("Lūdzu, ievadiet derīgu numuru!")
             continue
@@ -109,16 +121,29 @@ def main():
             except ValueError:
                 print("Lūdzu, ievadiet derīgu skaitli!")
         elif choice == 4:
+            print("\nNejauša skaitļa ģenerators:")
+            try:
+                min_value = int(input("Ievadiet minimālo vērtību: "))
+                max_value = int(input("Ievadiet maksimālo vērtību: "))
+                if min_value > max_value:
+                    print("Minimālajai vērtībai jābūt mazākai vai vienādai ar maksimālo vērtību!")
+                    continue
+                random_number = generate_random_number(min_value, max_value)
+                print(f"Random ģenerētais skaitlis vērtībā ({min_value}, {max_value}): {random_number}\n")
+                last_results = f"Random ģenerētais skaitlis: {random_number}"
+            except ValueError:
+                print("Lūdzu, ievadiet derīgas skaitliskas vērtības!")
+        elif choice == 5:
             print("\nPēdējie rezultāti:")
             if last_results:
                 print(last_results)
             else:
                 print("Nav datu par pēdējiem rezultātiem.\n")
-        elif choice == 5:
+        elif choice == 6:
             print("\nPaldies, ka izmantojāt programmu! Tiekamies atkal!")
             break
         else:
-            print("Lūdzu, izvēlieties derīgu opciju (1, 2, 3, 4 vai 5).")
+            print("Lūdzu, izvēlieties derīgu opciju (1, 2, 3, 4, 5 vai 6).")
 
 if __name__ == "__main__":
     main()
