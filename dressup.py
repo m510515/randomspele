@@ -77,31 +77,31 @@ def dressing_game():
     # 5. Garastāvoklis
     mood = get_user_input("Kāds ir Tavs garastāvoklis? (labs / slikts): ", ['labs', 'slikts'])
     if mood == 'labs':
-        mood_bonus = 3
+        mood_bonus = 8
         print(f"Yaas!")
     else:
-        mood_bonus = -2
+        mood_bonus = -10
         print(f"Lift up your head queen, your crown is falling")
 
     # Bonuss
     crush_notice_chance = mood_bonus
     if outfit_type == 'kleita' and color in ['rozā', 'balts']:
-        crush_notice_chance += 2
+        crush_notice_chance += 20
     if outfit_type in ['bikses un krekls', 'šorti un krekls', 'svārki un krekls'] and pattern in ['leoparda', 'bez raksta']:
-        crush_notice_chance += 2
+        crush_notice_chance += 6
     if hair == 'izlaisti':
-        crush_notice_chance += 2
+        crush_notice_chance += 40
     if shoes in ['platformas', 'augstpapēži']:
-        crush_notice_chance += 2
+        crush_notice_chance += 10
 
     # Rezultāts
-    roll = random.randint(1, 10)
+    roll = random.randint(-100, 100)
     print(f"\nViņš ({crush_name}) lingero pie tevis")
     print(f"(Tavs liktenis ir laimes rokās: {roll}, tavs score: {crush_notice_chance})")
 
-    if crush_notice_chance + roll >= 10:
+    if crush_notice_chance + roll >= 40:
         print(f"Go diva! {crush_name} pienāk un saka: 'Čau skaistule'")
-    elif crush_notice_chance + roll >= 7:
+    elif crush_notice_chance + roll >= 10:
         print(f"{crush_name} uzmet aci un smaida... Tu esi out of his league tā pat!")
     else:
         print(f"{crush_name} tevi nepamana... Tev vajag fashion advice!")
